@@ -75,4 +75,29 @@ int main() {
   // kompilator zauważy że to float.
   cout << "Zad6" << endl << endl;
   fahrenheit_celsius_converter();
+  cout << "Zad7" << endl << endl;
+  float input;
+  for (int i = 0; i < 10; i++) {
+    cout << "Podaj liczbę: ";
+    cin >> input;
+    if (input >= 0)
+      cout << input;
+    cout << endl;
+  }
+  cout << "Zad8" << endl << endl;
+  for (int i = 0; i <= 100; i++) {
+    if (i % 2 == 0)
+      cout << i << " ";
+  }
+  cout << endl;
+
+  cout << "Zad9" << endl << endl;
+  int in_dec;
+  cout << "Podaj liczbę do modulo: ";
+  cin >> in_dec;
+  for (int i = 0; i <= 100; i++) {
+    if (i % in_dec == 0)
+      cout << i << " ";
+  }
+  cout << endl;
 }
