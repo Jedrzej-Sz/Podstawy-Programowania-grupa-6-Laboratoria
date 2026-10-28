@@ -5,8 +5,10 @@ using namespace std;
 void kalkulator();
 void czy_zlozona(int a);
 void Temperatura(int a);
+int najwieksza(int a, int b);
 
 int main() {
+  /*
   // Zad 1
   int a, b;
   cout << "Podaj wartości a i b: ";
@@ -44,14 +46,14 @@ int main() {
 
   // Zad 4
   kalkulator();
-
+`
   // Zad 5 Pętla pokazana na ekranie będzie nieskończona gdyż nie ma warunku
   // stop nieskończona while to while(1), while(true), de facto wsztstko co nie
   // jest false albo 0
   /*
   while(1){ cout<<"BOEING BOEING"<<endl} //Przykłąd irytującej pętli
   */
-
+  /*
   // Zad 6
   bool czy_chce = 1;
   char buff;
@@ -75,8 +77,8 @@ int main() {
     if (liczba % 2 == 0)
       continue;
     cout << "Liczba to: " << liczba;
-  }
-
+  }*/
+  int liczba;
   // Zad 8
   cout << "Podaj liczbę";
   cin >> liczba;
@@ -86,6 +88,20 @@ int main() {
   cout << "Podaj temperaturę: ";
   cin >> liczba;
   Temperatura(liczba);
+
+  // Zad 10
+  int a1, a2, a3;
+  cout << "Podaj 3 liczby: ";
+  cin >> a1 >> a2 >> a3;
+  cout << " Największa to: " << najwieksza(a1, najwieksza(a2, a3));
+}
+int najwieksza(int a, int b) {
+  if (a == b)
+    return a;
+  if (a > b)
+    return a;
+  else
+    return b;
 }
 void czy_zlozona(int a) {
   for (int i = 2; i <= sqrt(a); i++) {
