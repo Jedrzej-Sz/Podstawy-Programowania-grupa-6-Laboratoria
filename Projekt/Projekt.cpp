@@ -18,7 +18,7 @@ void simulateDay(population *Population, double infectionRate,
 
 void changeParameters(double *infectionRate, double *recoveryRate);
 
-bool checkPopulation(population Population);
+bool checkPopulation(population *Population);
 
 int main() {
   // Struktura z populacją
@@ -37,14 +37,14 @@ int main() {
   int choice;
   bool loop = 1;
 
-  while (choice) {
+  while (loop) {
     showPopulation(Population);
     choice = Menu();
 
     switch (choice) {
     case 1:
       simulateDay(&Population, infectionRate, recoveryRate);
-      checkPopulation(Population);
+      checkPopulation(&Population);
       break;
     case 2:
       changeParameters(&infectionRate, &recoveryRate);
