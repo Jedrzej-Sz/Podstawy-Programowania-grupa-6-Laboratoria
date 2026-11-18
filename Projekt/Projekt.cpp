@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+#define MAX_DAYS 100
+
 struct population {
   int susceptible;
   int infected;
@@ -9,7 +11,19 @@ struct population {
   int day;
 };
 
-void showPopulation(population Population);
+struct population_history {
+  int susceptible[MAX_DAYS + 1];
+  int infected[MAX_DAYS + 1];
+  int recovered[MAX_DAYS + 1];
+  int days[MAX_DAYS + 1];
+};
+
+struct infection_progress {
+  int peopleRecovered[MAX_DAYS];
+  int peopleInfected[MAX_DAYS];
+};
+
+void showPopulation(population *Population);
 
 int Menu();
 
@@ -20,6 +34,15 @@ void changeParameters(double *infectionRate, double *recoveryRate);
 
 bool checkPopulation(population *Population);
 
+population_history PopulationHistory;
+
+int day = 0;
+
+infection_progress InfectionProgress;
+
+void update_infection_progress();
+void add_to_history(population *Population);
+
 int main() {
   // Struktura z populacją
   population Population;
@@ -28,22 +51,26 @@ int main() {
   Population.infected = 10;
   Population.recovered = 10;
 
+  add_to_history(&Population);
+
   double infectionRate = 0.2;
   double recoveryRate = 0.1;
   // Stałe początkowe
 
-  showPopulation(Population);
+  showPopulation(&Population);
 
   int choice;
   bool loop = 1;
 
   while (loop) {
-    showPopulation(Population);
+    showPopulation(&Population);
     choice = Menu();
 
     switch (choice) {
     case 1:
       simulateDay(&Population, infectionRate, recoveryRate);
+      day++;
+      add_to_history(&Population);
       checkPopulation(&Population);
       break;
     case 2:
@@ -57,13 +84,13 @@ int main() {
   }
 }
 
-void showPopulation(population Population) {
-  cout << "Day: " << Population.day << endl;
-  cout << "Susceptible: " << Population.susceptible << endl;
-  cout << "Infected: " << Population.infected << endl;
-  cout << "Recovered: " << Population.recovered << endl;
+void showPopulation(population *Population) {
+  cout << "Day: " << Population->day << endl;
+  cout << "Susceptible: " << Population->susceptible << endl;
+  cout << "Infected: " << Population->infected << endl;
+  cout << "Recovered: " << Population->recovered << endl;
   cout << "Total: "
-       << Population.susceptible + Population.infected + Population.recovered
+       << Population->susceptible + Population->infected + Population->recovered
        << endl;
 }
 int Menu() {
@@ -102,4 +129,15 @@ bool checkPopulation(population *Population) {
     return true;
   else
     return false;
+}
+
+void add_to_history(population *Population) {
+  int day = Population->day;
+  PopulationHistory.days[day] = Population->day;
+  PopulationHistory.infected[day] = Population->infected;
+  PopulationHistory.recovered[day] = Population->recovered;
+  PopulationHistory.susceptible[day] = Population->susceptible;
+}
+void update_infection_progress();
+{
 }
