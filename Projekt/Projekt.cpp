@@ -172,10 +172,10 @@ void add_to_history(population *Population) {
 void showHistory() {
   cout << SCREEN_CLEAR;
   cout << setw(4) << "Lp. " << setw(13) << "susceptible" << setw(10)
-       << "infected" << setw(10) << "recovered" << setw(20) << "New infected"
-       << setw(20) << "New recovered" << endl;
+       << "infected" << setw(10) << "recovered" << setw(15) << "New infected"
+       << setw(15) << "New recovered" << endl;
   for (int i = 0; i <= day; i++) {
-    cout << setw(4) << i << setw(10) << PopulationHistory.susceptible[i]
+    cout << setw(4) << i << setw(13) << PopulationHistory.susceptible[i]
          << setw(10) << PopulationHistory.infected[i] << setw(10)
          << PopulationHistory.recovered[i];
 
